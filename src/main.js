@@ -85,18 +85,16 @@ heroTl
     ease: 'power4.out',
   }, '-=1.2')
 
-// === Scroll Reveals — GPU-Accelerated with Y-Only Transforms ===
-// Product cards: staggered reveal
+// === Scroll Reveals — Position-Only (no opacity to prevent invisible content) ===
 gsap.utils.toArray('.product-card').forEach((card, i) => {
   gsap.from(card, {
-    y: 60,
-    opacity: 0,
+    y: 40,
     duration: 0.7,
     delay: i * 0.08,
     ease: 'power2.out',
     scrollTrigger: {
       trigger: card,
-      start: 'top 90%',
+      start: 'top 92%',
       toggleActions: 'play none none none',
     }
   })
@@ -109,8 +107,7 @@ gsap.utils.toArray('.heritage').forEach((section, i) => {
 
   if (text) {
     gsap.from(text, {
-      x: i % 2 === 0 ? -50 : 50,
-      opacity: 0,
+      x: i % 2 === 0 ? -30 : 30,
       duration: 1,
       ease: 'power3.out',
       scrollTrigger: {
@@ -122,8 +119,7 @@ gsap.utils.toArray('.heritage').forEach((section, i) => {
 
   if (visual) {
     gsap.from(visual, {
-      x: i % 2 === 0 ? 50 : -50,
-      opacity: 0,
+      x: i % 2 === 0 ? 30 : -30,
       duration: 1,
       ease: 'power3.out',
       scrollTrigger: {
@@ -136,8 +132,7 @@ gsap.utils.toArray('.heritage').forEach((section, i) => {
 
 // CTA box: scale up reveal
 gsap.from('.cta-box', {
-  scale: 0.9,
-  opacity: 0,
+  scale: 0.95,
   duration: 1,
   ease: 'power3.out',
   scrollTrigger: {
