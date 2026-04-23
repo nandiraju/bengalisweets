@@ -36,8 +36,7 @@
 
 [data-theme="dark"] .logo-img,
 [data-theme="dark"] .logo-img-footer {
-  mix-blend-mode: normal;
-  filter: brightness(1.1);
+  filter: brightness(1.2);
 }
 
 [data-theme="dark"] .noise-overlay {
@@ -144,7 +143,6 @@ img {
 .logo-img {
   height: 80px;
   width: auto;
-  mix-blend-mode: multiply;
   display: block;
   transition: transform 0.3s var(--ease-smooth);
   will-change: transform;
@@ -154,7 +152,6 @@ img {
 .logo-img-footer {
   height: 100px;
   width: auto;
-  mix-blend-mode: multiply;
   margin-bottom: 24px;
 }
 
