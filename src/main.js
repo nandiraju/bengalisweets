@@ -25,16 +25,35 @@ const navLinks = document.querySelector('.nav-links')
 if (menuBtn && navLinks) {
   menuBtn.addEventListener('click', () => {
     navLinks.classList.toggle('open')
-    // Animate hamburger lines
     menuBtn.classList.toggle('active')
   })
 
-  // Close menu when a link is tapped
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('open')
       menuBtn.classList.remove('active')
     })
+  })
+}
+
+// === Theme Toggle with Persistence ===
+const themeToggle = document.getElementById('themeToggle')
+const root = document.documentElement
+
+// Load saved theme or respect system preference
+const savedTheme = localStorage.getItem('shubho-theme')
+if (savedTheme) {
+  root.setAttribute('data-theme', savedTheme)
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  root.setAttribute('data-theme', 'dark')
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark'
+    const newTheme = isDark ? 'light' : 'dark'
+    root.setAttribute('data-theme', newTheme)
+    localStorage.setItem('shubho-theme', newTheme)
   })
 }
 

@@ -1,5 +1,5 @@
 :root {
-  /* Warm & Appetizing Palette */
+  /* Warm & Appetizing Palette — Light Theme */
   --color-bg: #FFFDF5;
   --color-surface: #FFFFFF;
   --color-accent: #B22222;
@@ -8,6 +8,8 @@
   --color-text-main: #3E2723;
   --color-text-muted: #6D4C41;
   --color-border: rgba(178, 34, 34, 0.1);
+  --color-heritage-bg: #FDF2E9;
+  --color-products-bg: #FFFFFF;
 
   /* Typography */
   --font-heading: 'Playfair Display', serif;
@@ -16,6 +18,42 @@
   /* Motion */
   --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === DARK THEME === */
+[data-theme="dark"] {
+  --color-bg: #1A1210;
+  --color-surface: #2A1F1A;
+  --color-accent: #E25555;
+  --color-saffron: #FFB347;
+  --color-terracotta: #F0A050;
+  --color-text-main: #F5EDE4;
+  --color-text-muted: #BFA99A;
+  --color-border: rgba(242, 160, 80, 0.15);
+  --color-heritage-bg: #221A14;
+  --color-products-bg: #1E1612;
+}
+
+[data-theme="dark"] .logo-img,
+[data-theme="dark"] .logo-img-footer {
+  mix-blend-mode: normal;
+  filter: brightness(1.1);
+}
+
+[data-theme="dark"] .noise-overlay {
+  opacity: 0.02;
+}
+
+[data-theme="dark"] .hero-img-wrap {
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .product-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .product-card:hover {
+  box-shadow: 0 20px 50px rgba(226, 85, 85, 0.15);
 }
 
 /* === PERFORMANCE: Bullet Speed Rendering === */
@@ -42,6 +80,7 @@ body {
   color: var(--color-text-main);
   overflow-x: hidden;
   line-height: 1.6;
+  transition: background-color 0.4s var(--ease-smooth), color 0.4s var(--ease-smooth);
 }
 
 img {
@@ -76,7 +115,7 @@ img {
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
   visibility: visible !important;
   opacity: 1 !important;
-  transition: box-shadow 0.3s var(--ease-smooth);
+  transition: box-shadow 0.3s var(--ease-smooth), background-color 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth);
 }
 
 .navbar.scrolled {
@@ -150,6 +189,36 @@ img {
 .nav-links a:hover { color: var(--color-accent); }
 .nav-links a:hover::after { width: 100%; }
 
+/* === Theme Toggle Button === */
+.theme-toggle {
+  background: none;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-main);
+  transition: all 0.3s var(--ease-smooth);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: rotate(15deg);
+}
+
+/* Light mode: show moon, hide sun */
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+/* Dark mode: show sun, hide moon */
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
 /* Eyebrow label */
 .eyebrow {
   font-size: 12px;
@@ -213,7 +282,8 @@ img {
 /* === PRODUCTS GRID === */
 .products {
   padding: 100px 10%;
-  background: white;
+  background: var(--color-products-bg);
+  transition: background-color 0.4s var(--ease-smooth);
 }
 
 .section-title {
@@ -244,7 +314,7 @@ img {
   flex-direction: column;
   /* GPU-accelerated hover */
   transform: translateY(0) translateZ(0);
-  transition: transform 0.5s var(--ease-expo), box-shadow 0.5s var(--ease-expo);
+  transition: transform 0.5s var(--ease-expo), box-shadow 0.5s var(--ease-expo), background-color 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth);
   will-change: transform;
   backface-visibility: hidden;
 }
@@ -311,11 +381,17 @@ img {
 /* === HERITAGE STORY SECTIONS === */
 .heritage {
   padding: 120px 10%;
-  background: #FDF2E9;
+  background: var(--color-heritage-bg);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
+  border-top: 1px solid var(--color-border);
+  transition: background-color 0.4s var(--ease-smooth);
+}
+
+.heritage-alt {
+  background: var(--color-surface);
 }
 
 .heritage-text h2 {
@@ -357,10 +433,20 @@ img {
   opacity: 0.9;
 }
 
-/* === FOOTER === */
+.btn-order-cta {
+  background: white;
+  color: var(--color-accent);
+}
+
+.btn-order-cta:hover {
+  background: #f0f0f0;
+}
+
 footer {
   padding: 80px 10% 40px;
   border-top: 1px solid var(--color-border);
+  background: var(--color-bg);
+  transition: background-color 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth);
 }
 
 .footer-top {
